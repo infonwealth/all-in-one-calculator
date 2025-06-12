@@ -1,0 +1,836 @@
+<!-- Calculator Type Tabs -->
+        <div class="flex flex-wrap border-b border-gray-200 mb-6">
+            <button id="tab-regular" class="tab-active px-4 py-3 text-lg flex-grow md:flex-grow-0">Regular Calculator</button>
+            <button id="tab-investment" class="px-4 py-3 text-lg text-gray-600 flex-grow md:flex-grow-0">Investment Calculator</button>
+            <button id="tab-loan" class="px-4 py-3 text-lg text-gray-600 flex-grow md:flex-grow-0">Loan Calculator</button>
+        </div>
+        
+        <!-- Regular Calculator Section -->
+        <div id="regular-calculator" class="calculator-section">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="regular-calc-container bg-gray-100 rounded-xl p-6 mx-auto w-full max-w-md">
+                    <div class="calc-display bg-white p-4 rounded-lg mb-4 h-24 flex flex-col items-end justify-between shadow-inner">
+                        <div id="calc-history" class="text-gray-500 text-sm w-full text-right h-6 overflow-hidden"></div>
+                        <div id="calc-current" class="text-3xl font-bold w-full text-right overflow-x-auto">0</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-4 gap-2">
+                        <!-- First Row -->
+                        <button class="calc-btn bg-red-500 text-white p-4 rounded-lg text-xl font-bold" onclick="clearCalc()">C</button>
+                        <button class="calc-btn bg-gray-300 p-4 rounded-lg text-xl font-bold" onclick="backspace()">⌫</button>
+                        <button class="calc-btn bg-gray-300 p-4 rounded-lg text-xl font-bold" onclick="addOperator('%')">%</button>
+                        <button class="calc-btn bg-blue-500 text-white p-4 rounded-lg text-xl font-bold" onclick="addOperator('/')">÷</button>
+                        
+                        <!-- Second Row -->
+                        <button class="calc-btn bg-white p-4 rounded-lg text-xl font-bold" onclick="addNumber('7')">7</button>
+                        <button class="calc-btn bg-white p-4 rounded-lg text-xl font-bold" onclick="addNumber('8')">8</button>
+                        <button class="calc-btn bg-white p-4 rounded-lg text-xl font-bold" onclick="addNumber('9')">9</button>
+                        <button class="calc-btn bg-blue-500 text-white p-4 rounded-lg text-xl font-bold" onclick="addOperator('*')">×</button>
+                        
+                        <!-- Third Row -->
+                        <button class="calc-btn bg-white p-4 rounded-lg text-xl font-bold" onclick="addNumber('4')">4</button>
+                        <button class="calc-btn bg-white p-4 rounded-lg text-xl font-bold" onclick="addNumber('5')">5</button>
+                        <button class="calc-btn bg-white p-4 rounded-lg text-xl font-bold" onclick="addNumber('6')">6</button>
+                        <button class="calc-btn bg-blue-500 text-white p-4 rounded-lg text-xl font-bold" onclick="addOperator('-')">−</button>
+                        
+                        <!-- Fourth Row -->
+                        <button class="calc-btn bg-white p-4 rounded-lg text-xl font-bold" onclick="addNumber('1')">1</button>
+                        <button class="calc-btn bg-white p-4 rounded-lg text-xl font-bold" onclick="addNumber('2')">2</button>
+                        <button class="calc-btn bg-white p-4 rounded-lg text-xl font-bold" onclick="addNumber('3')">3</button>
+                        <button class="calc-btn bg-blue-500 text-white p-4 rounded-lg text-xl font-bold" onclick="addOperator('+')">+</button>
+                        
+                        <!-- Fifth Row -->
+                        <button class="calc-btn bg-white p-4 rounded-lg text-xl font-bold" onclick="addNumber('0')">0</button>
+                        <button class="calc-btn bg-white p-4 rounded-lg text-xl font-bold" onclick="addDecimal()">.</button>
+                        <button class="calc-btn bg-white p-4 rounded-lg text-xl font-bold" onclick="toggleSign()">+/-</button>
+                        <button class="calc-btn bg-green-500 text-white p-4 rounded-lg text-xl font-bold" onclick="calculate()">=</button>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-2">Advanced Functions</h3>
+                        <div class="grid grid-cols-4 gap-2">
+                            <button class="calc-btn bg-gray-200 p-3 rounded-lg text-sm font-bold" onclick="calculateSquare()">x²</button>
+                            <button class="calc-btn bg-gray-200 p-3 rounded-lg text-sm font-bold" onclick="calculateSquareRoot()">√x</button>
+                            <button class="calc-btn bg-gray-200 p-3 rounded-lg text-sm font-bold" onclick="calculateReciprocal()">1/x</button>
+                            <button class="calc-btn bg-gray-200 p-3 rounded-lg text-sm font-bold" onclick="memoryStore()">MS</button>
+                            <button class="calc-btn bg-gray-200 p-3 rounded-lg text-sm font-bold" onclick="memoryRecall()">MR</button>
+                            <button class="calc-btn bg-gray-200 p-3 rounded-lg text-sm font-bold" onclick="memoryClear()">MC</button>
+                            <button class="calc-btn bg-gray-200 p-3 rounded-lg text-sm font-bold" onclick="memoryAdd()">M+</button>
+                            <button class="calc-btn bg-gray-200 p-3 rounded-lg text-sm font-bold" onclick="memorySubtract()">M-</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calc-info bg-blue-50 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-4">Calculator Features</h3>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-medium text-blue-700 mb-2">Basic Operations</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Addition, subtraction, multiplication, division</li>
+                            <li>Percentage calculations</li>
+                            <li>Positive/negative number toggle</li>
+                            <li>Decimal point operations</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-medium text-blue-700 mb-2">Advanced Functions</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Square (x²) and square root (√x) calculations</li>
+                            <li>Reciprocal (1/x) function</li>
+                            <li>Memory functions (store, recall, add, subtract, clear)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h4 class="font-medium text-blue-700 mb-2">Memory Functions</h4>
+                        <p class="text-gray-700 text-sm">
+                            <span class="font-bold">MS</span> - Memory Store: Saves the current number<br>
+                            <span class="font-bold">MR</span> - Memory Recall: Displays the stored number<br>
+                            <span class="font-bold">MC</span> - Memory Clear: Clears the memory<br>
+                            <span class="font-bold">M+</span> - Memory Add: Adds current number to memory<br>
+                            <span class="font-bold">M-</span> - Memory Subtract: Subtracts current from memory
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Investment Calculator Section -->
+        <div id="investment-calculator" class="calculator-section hidden">
+            <div class="flex flex-wrap border-b border-gray-200 mb-6">
+                <button id="sip-tab" class="tab-active px-4 py-2 text-md">SIP Calculator</button>
+                <button id="lumpsum-tab" class="px-4 py-2 text-md text-gray-600">Lumpsum Calculator</button>
+            </div>
+            
+            <!-- SIP Calculator -->
+            <div id="sip-calculator" class="calculator-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="input-section">
+                        <div class="input-group mb-6">
+                            <label class="block text-gray-700 mb-2">Monthly Investment (₹)</label>
+                            <input type="number" id="sip-amount" class="w-full p-3 border border-gray-300 rounded-lg" value="5000">
+                            <input type="range" id="sip-amount-range" min="500" max="100000" step="500" value="5000" class="w-full mt-2">
+                        </div>
+                        
+                        <div class="input-group mb-6">
+                            <label class="block text-gray-700 mb-2">Expected Annual Return (%)</label>
+                            <input type="number" id="sip-return" class="w-full p-3 border border-gray-300 rounded-lg" value="12">
+                            <input type="range" id="sip-return-range" min="1" max="30" step="0.5" value="12" class="w-full mt-2">
+                        </div>
+                        
+                        <div class="input-group mb-6">
+                            <label class="block text-gray-700 mb-2">Time Period (Years)</label>
+                            <input type="number" id="sip-years" class="w-full p-3 border border-gray-300 rounded-lg" value="10">
+                            <input type="range" id="sip-years-range" min="1" max="40" step="1" value="10" class="w-full mt-2">
+                        </div>
+                        
+                        <button id="calculate-sip" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium text-lg transition duration-300">Calculate</button>
+                    </div>
+                    
+                    <div class="results-section">
+                        <div class="bg-blue-50 rounded-xl p-6">
+                            <h3 class="text-xl font-semibold text-blue-800 mb-4">SIP Results</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                <div class="result-card bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-600 text-sm">Invested Amount</p>
+                                    <p id="sip-invested" class="text-2xl font-bold text-gray-800">₹6,00,000</p>
+                                </div>
+                                
+                                <div class="result-card bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-600 text-sm">Estimated Returns</p>
+                                    <p id="sip-returns" class="text-2xl font-bold text-green-600">₹4,39,129</p>
+                                </div>
+                                
+                                <div class="result-card bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-600 text-sm">Total Value</p>
+                                    <p id="sip-total" class="text-2xl font-bold text-blue-600">₹10,39,129</p>
+                                </div>
+                                
+                                <div class="result-card bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-600 text-sm">Wealth Gain Ratio</p>
+                                    <p id="sip-ratio" class="text-2xl font-bold text-purple-600">1.73x</p>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container bg-white p-4 rounded-lg">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-600">Investment Breakdown</span>
+                                </div>
+                                <div class="relative h-40 mt-4">
+                                    <div class="flex h-full items-end justify-around">
+                                        <div class="flex flex-col items-center">
+                                            <div id="sip-chart-invested" class="w-16 bg-blue-500 rounded-t-md" style="height: 40%;"></div>
+                                            <span class="text-xs mt-1">Invested</span>
+                                        </div>
+                                        <div class="flex flex-col items-center">
+                                            <div id="sip-chart-returns" class="w-16 bg-green-500 rounded-t-md" style="height: 30%;"></div>
+                                            <span class="text-xs mt-1">Returns</span>
+                                        </div>
+                                        <div class="flex flex-col items-center">
+                                            <div id="sip-chart-total" class="w-16 bg-purple-500 rounded-t-md" style="height: 70%;"></div>
+                                            <span class="text-xs mt-1">Total</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lumpsum Calculator -->
+            <div id="lumpsum-calculator" class="calculator-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="input-section">
+                        <div class="input-group mb-6">
+                            <label class="block text-gray-700 mb-2">One-time Investment (₹)</label>
+                            <input type="number" id="lumpsum-amount" class="w-full p-3 border border-gray-300 rounded-lg" value="100000">
+                            <input type="range" id="lumpsum-amount-range" min="1000" max="10000000" step="1000" value="100000" class="w-full mt-2">
+                        </div>
+                        
+                        <div class="input-group mb-6">
+                            <label class="block text-gray-700 mb-2">Expected Annual Return (%)</label>
+                            <input type="number" id="lumpsum-return" class="w-full p-3 border border-gray-300 rounded-lg" value="12">
+                            <input type="range" id="lumpsum-return-range" min="1" max="30" step="0.5" value="12" class="w-full mt-2">
+                        </div>
+                        
+                        <div class="input-group mb-6">
+                            <label class="block text-gray-700 mb-2">Time Period (Years)</label>
+                            <input type="number" id="lumpsum-years" class="w-full p-3 border border-gray-300 rounded-lg" value="10">
+                            <input type="range" id="lumpsum-years-range" min="1" max="40" step="1" value="10" class="w-full mt-2">
+                        </div>
+                        
+                        <button id="calculate-lumpsum" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium text-lg transition duration-300">Calculate</button>
+                    </div>
+                    
+                    <div class="results-section">
+                        <div class="bg-blue-50 rounded-xl p-6">
+                            <h3 class="text-xl font-semibold text-blue-800 mb-4">Lumpsum Results</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                <div class="result-card bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-600 text-sm">Invested Amount</p>
+                                    <p id="lumpsum-invested" class="text-2xl font-bold text-gray-800">₹1,00,000</p>
+                                </div>
+                                
+                                <div class="result-card bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-600 text-sm">Estimated Returns</p>
+                                    <p id="lumpsum-returns" class="text-2xl font-bold text-green-600">₹2,10,585</p>
+                                </div>
+                                
+                                <div class="result-card bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-600 text-sm">Total Value</p>
+                                    <p id="lumpsum-total" class="text-2xl font-bold text-blue-600">₹3,10,585</p>
+                                </div>
+                                
+                                <div class="result-card bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-600 text-sm">Absolute Return</p>
+                                    <p id="lumpsum-absolute" class="text-2xl font-bold text-purple-600">210.59%</p>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container bg-white p-4 rounded-lg">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-600">Investment Breakdown</span>
+                                </div>
+                                <div class="relative h-40 mt-4">
+                                    <div class="flex h-full items-end justify-around">
+                                        <div class="flex flex-col items-center">
+                                            <div id="lumpsum-chart-invested" class="w-16 bg-blue-500 rounded-t-md" style="height: 30%;"></div>
+                                            <span class="text-xs mt-1">Invested</span>
+                                        </div>
+                                        <div class="flex flex-col items-center">
+                                            <div id="lumpsum-chart-returns" class="w-16 bg-green-500 rounded-t-md" style="height: 60%;"></div>
+                                            <span class="text-xs mt-1">Returns</span>
+                                        </div>
+                                        <div class="flex flex-col items-center">
+                                            <div id="lumpsum-chart-total" class="w-16 bg-purple-500 rounded-t-md" style="height: 90%;"></div>
+                                            <span class="text-xs mt-1">Total</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Loan Calculator Section -->
+        <div id="loan-calculator" class="calculator-section hidden">
+            <div class="flex flex-wrap border-b border-gray-200 mb-6">
+                <button id="home-loan-tab" class="tab-active px-4 py-2 text-md">Home Loan</button>
+                <button id="personal-loan-tab" class="px-4 py-2 text-md text-gray-600">Personal Loan</button>
+                <button id="car-loan-tab" class="px-4 py-2 text-md text-gray-600">Car Loan</button>
+                <button id="education-loan-tab" class="px-4 py-2 text-md text-gray-600">Education Loan</button>
+            </div>
+            
+            <div id="loan-calculator-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="input-section">
+                        <div class="input-group mb-6">
+                            <label class="block text-gray-700 mb-2">Loan Amount (₹)</label>
+                            <input type="number" id="loan-amount" class="w-full p-3 border border-gray-300 rounded-lg" value="2000000">
+                            <input type="range" id="loan-amount-range" min="10000" max="10000000" step="10000" value="2000000" class="w-full mt-2">
+                        </div>
+                        
+                        <div class="input-group mb-6">
+                            <label class="block text-gray-700 mb-2">Interest Rate (% per annum)</label>
+                            <input type="number" id="loan-interest" class="w-full p-3 border border-gray-300 rounded-lg" value="8.5">
+                            <input type="range" id="loan-interest-range" min="5" max="20" step="0.1" value="8.5" class="w-full mt-2">
+                        </div>
+                        
+                        <div class="input-group mb-6">
+                            <label class="block text-gray-700 mb-2">Loan Tenure (Years)</label>
+                            <input type="number" id="loan-tenure" class="w-full p-3 border border-gray-300 rounded-lg" value="20">
+                            <input type="range" id="loan-tenure-range" min="1" max="30" step="1" value="20" class="w-full mt-2">
+                        </div>
+                        
+                        <button id="calculate-loan" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium text-lg transition duration-300">Calculate</button>
+                    </div>
+                    
+                    <div class="results-section">
+                        <div class="bg-blue-50 rounded-xl p-6">
+                            <h3 class="text-xl font-semibold text-blue-800 mb-4">Loan Results</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                <div class="result-card bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-600 text-sm">Monthly EMI</p>
+                                    <p id="loan-emi" class="text-2xl font-bold text-gray-800">₹17,433</p>
+                                </div>
+                                
+                                <div class="result-card bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-600 text-sm">Total Interest</p>
+                                    <p id="loan-total-interest" class="text-2xl font-bold text-red-600">₹21,83,920</p>
+                                </div>
+                                
+                                <div class="result-card bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-600 text-sm">Total Amount</p>
+                                    <p id="loan-total-amount" class="text-2xl font-bold text-blue-600">₹41,83,920</p>
+                                </div>
+                                
+                                <div class="result-card bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-600 text-sm">Interest to Principal Ratio</p>
+                                    <p id="loan-ratio" class="text-2xl font-bold text-purple-600">1.09</p>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container bg-white p-4 rounded-lg">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-600">Payment Breakdown</span>
+                                </div>
+                                <div class="relative h-40 mt-4">
+                                    <div class="flex h-full items-end justify-around">
+                                        <div class="flex flex-col items-center">
+                                            <div id="loan-chart-principal" class="w-16 bg-blue-500 rounded-t-md" style="height: 45%;"></div>
+                                            <span class="text-xs mt-1">Principal</span>
+                                        </div>
+                                        <div class="flex flex-col items-center">
+                                            <div id="loan-chart-interest" class="w-16 bg-red-500 rounded-t-md" style="height: 55%;"></div>
+                                            <span class="text-xs mt-1">Interest</span>
+                                        </div>
+                                        <div class="flex flex-col items-center">
+                                            <div id="loan-chart-total" class="w-16 bg-purple-500 rounded-t-md" style="height: 100%;"></div>
+                                            <span class="text-xs mt-1">Total</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-8 text-center text-gray-600">
+        <p>© 2023 All-in-One Financial Calculator | Designed for your financial planning needs</p>
+    </div>
+</div>
+
+<script>
+    // Regular Calculator Variables
+    let currentInput = '0';
+    let previousInput = '';
+    let calculationOperator = '';
+    let memoryValue = 0;
+    
+    // Regular Calculator Functions
+    function updateDisplay() {
+        document.getElementById('calc-current').textContent = currentInput;
+        document.getElementById('calc-history').textContent = previousInput;
+    }
+    
+    function addNumber(num) {
+        if (currentInput === '0' || currentInput === 'Error') {
+            currentInput = num;
+        } else {
+            currentInput += num;
+        }
+        updateDisplay();
+    }
+    
+    function addOperator(operator) {
+        if (currentInput === 'Error') {
+            clearCalc();
+            return;
+        }
+        
+        if (calculationOperator !== '') {
+            calculate();
+        }
+        
+        previousInput = currentInput;
+        
+        switch(operator) {
+            case '+':
+                previousInput += ' + ';
+                break;
+            case '-':
+                previousInput += ' - ';
+                break;
+            case '*':
+                previousInput += ' × ';
+                break;
+            case '/':
+                previousInput += ' ÷ ';
+                break;
+            case '%':
+                previousInput += ' % ';
+                break;
+        }
+        
+        calculationOperator = operator;
+        currentInput = '0';
+        updateDisplay();
+    }
+    
+    function calculate() {
+        if (currentInput === 'Error' || calculationOperator === '') {
+            return;
+        }
+        
+        let result;
+        const prev = parseFloat(previousInput);
+        const current = parseFloat(currentInput);
+        
+        switch(calculationOperator) {
+            case '+':
+                result = prev + current;
+                break;
+            case '-':
+                result = prev - current;
+                break;
+            case '*':
+                result = prev * current;
+                break;
+            case '/':
+                if (current === 0) {
+                    result = 'Error';
+                } else {
+                    result = prev / current;
+                }
+                break;
+            case '%':
+                result = prev * (current / 100);
+                break;
+            default:
+                return;
+        }
+        
+        previousInput += currentInput + ' = ';
+        
+        if (result === 'Error') {
+            currentInput = 'Error';
+        } else {
+            // Format the result to avoid extremely long decimals
+            if (Number.isInteger(result)) {
+                currentInput = result.toString();
+            } else {
+                // Limit to 8 decimal places and remove trailing zeros
+                currentInput = parseFloat(result.toFixed(8)).toString();
+            }
+        }
+        
+        calculationOperator = '';
+        updateDisplay();
+    }
+    
+    function clearCalc() {
+        currentInput = '0';
+        previousInput = '';
+        calculationOperator = '';
+        updateDisplay();
+    }
+    
+    function backspace() {
+        if (currentInput === 'Error') {
+            clearCalc();
+            return;
+        }
+        
+        if (currentInput.length === 1) {
+            currentInput = '0';
+        } else {
+            currentInput = currentInput.slice(0, -1);
+        }
+        updateDisplay();
+    }
+    
+    function addDecimal() {
+        if (currentInput === 'Error') {
+            clearCalc();
+            return;
+        }
+        
+        if (!currentInput.includes('.')) {
+            currentInput += '.';
+        }
+        updateDisplay();
+    }
+    
+    function toggleSign() {
+        if (currentInput === 'Error') {
+            return;
+        }
+        
+        if (currentInput !== '0') {
+            if (currentInput.charAt(0) === '-') {
+                currentInput = currentInput.slice(1);
+            } else {
+                currentInput = '-' + currentInput;
+            }
+            updateDisplay();
+        }
+    }
+    
+    function calculateSquare() {
+        if (currentInput === 'Error') {
+            return;
+        }
+        
+        const num = parseFloat(currentInput);
+        const result = num * num;
+        
+        previousInput = num + '² = ';
+        
+        if (Number.isInteger(result)) {
+            currentInput = result.toString();
+        } else {
+            currentInput = parseFloat(result.toFixed(8)).toString();
+        }
+        
+        updateDisplay();
+    }
+    
+    function calculateSquareRoot() {
+        if (currentInput === 'Error') {
+            return;
+        }
+        
+        const num = parseFloat(currentInput);
+        
+        if (num < 0) {
+            currentInput = 'Error';
+            previousInput = '√(' + num + ') = ';
+        } else {
+            const result = Math.sqrt(num);
+            previousInput = '√(' + num + ') = ';
+            
+            if (Number.isInteger(result)) {
+                currentInput = result.toString();
+            } else {
+                currentInput = parseFloat(result.toFixed(8)).toString();
+            }
+        }
+        
+        updateDisplay();
+    }
+    
+    function calculateReciprocal() {
+        if (currentInput === 'Error') {
+            return;
+        }
+        
+        const num = parseFloat(currentInput);
+        
+        if (num === 0) {
+            currentInput = 'Error';
+            previousInput = '1/(' + num + ') = ';
+        } else {
+            const result = 1 / num;
+            previousInput = '1/(' + num + ') = ';
+            
+            if (Number.isInteger(result)) {
+                currentInput = result.toString();
+            } else {
+                currentInput = parseFloat(result.toFixed(8)).toString();
+            }
+        }
+        
+        updateDisplay();
+    }
+    
+    function memoryStore() {
+        if (currentInput !== 'Error') {
+            memoryValue = parseFloat(currentInput);
+        }
+    }
+    
+    function memoryRecall() {
+        currentInput = memoryValue.toString();
+        updateDisplay();
+    }
+    
+    function memoryClear() {
+        memoryValue = 0;
+    }
+    
+    function memoryAdd() {
+        if (currentInput !== 'Error') {
+            memoryValue += parseFloat(currentInput);
+        }
+    }
+    
+    function memorySubtract() {
+        if (currentInput !== 'Error') {
+            memoryValue -= parseFloat(currentInput);
+        }
+    }
+    
+    // Tab switching functionality
+    document.getElementById('tab-regular').addEventListener('click', function() {
+        switchMainTab('regular');
+    });
+    
+    document.getElementById('tab-investment').addEventListener('click', function() {
+        switchMainTab('investment');
+    });
+    
+    document.getElementById('tab-loan').addEventListener('click', function() {
+        switchMainTab('loan');
+    });
+    
+    function switchMainTab(tabName) {
+        // Hide all calculator sections
+        document.querySelectorAll('.calculator-section').forEach(section => {
+            section.classList.add('hidden');
+        });
+        
+        // Show the selected calculator section
+        document.getElementById(tabName + '-calculator').classList.remove('hidden');
+        
+        // Update tab styles
+        document.querySelectorAll('#tab-regular, #tab-investment, #tab-loan').forEach(tab => {
+            tab.classList.remove('tab-active');
+            tab.classList.add('text-gray-600');
+        });
+        
+        document.getElementById('tab-' + tabName).classList.add('tab-active');
+        document.getElementById('tab-' + tabName).classList.remove('text-gray-600');
+    }
+    
+    // Investment calculator tabs
+    document.getElementById('sip-tab').addEventListener('click', function() {
+        switchInvestmentTab('sip');
+    });
+    
+    document.getElementById('lumpsum-tab').addEventListener('click', function() {
+        switchInvestmentTab('lumpsum');
+    });
+    
+    function switchInvestmentTab(tabName) {
+        // Hide all calculator contents
+        document.querySelectorAll('.calculator-content').forEach(content => {
+            content.classList.add('hidden');
+        });
+        
+        // Show the selected calculator content
+        document.getElementById(tabName + '-calculator').classList.remove('hidden');
+        
+        // Update tab styles
+        document.querySelectorAll('#sip-tab, #lumpsum-tab').forEach(tab => {
+            tab.classList.remove('tab-active');
+            tab.classList.add('text-gray-600');
+        });
+        
+        document.getElementById(tabName + '-tab').classList.add('tab-active');
+        document.getElementById(tabName + '-tab').classList.remove('text-gray-600');
+    }
+    
+    // Loan calculator tabs
+    const loanTabs = ['home-loan-tab', 'personal-loan-tab', 'car-loan-tab', 'education-loan-tab'];
+    const loanDefaults = {
+        'home-loan-tab': { amount: 2000000, interest: 8.5, tenure: 20 },
+        'personal-loan-tab': { amount: 500000, interest: 12, tenure: 5 },
+        'car-loan-tab': { amount: 800000, interest: 9.5, tenure: 7 },
+        'education-loan-tab': { amount: 1000000, interest: 10, tenure: 10 }
+    };
+    
+    loanTabs.forEach(tabId => {
+        document.getElementById(tabId).addEventListener('click', function() {
+            switchLoanTab(tabId);
+        });
+    });
+    
+    function switchLoanTab(tabId) {
+        // Update tab styles
+        loanTabs.forEach(tab => {
+            document.getElementById(tab).classList.remove('tab-active');
+            document.getElementById(tab).classList.add('text-gray-600');
+        });
+        
+        document.getElementById(tabId).classList.add('tab-active');
+        document.getElementById(tabId).classList.remove('text-gray-600');
+        
+        // Update default values based on loan type
+        const defaults = loanDefaults[tabId];
+        document.getElementById('loan-amount').value = defaults.amount;
+        document.getElementById('loan-amount-range').value = defaults.amount;
+        document.getElementById('loan-interest').value = defaults.interest;
+        document.getElementById('loan-interest-range').value = defaults.interest;
+        document.getElementById('loan-tenure').value = defaults.tenure;
+        document.getElementById('loan-tenure-range').value = defaults.tenure;
+        
+        // Calculate with new defaults
+        calculateLoan();
+    }
+    
+    // SIP Calculator functionality
+    document.getElementById('calculate-sip').addEventListener('click', calculateSIP);
+    
+    // Link range inputs to number inputs for SIP
+    linkInputs('sip-amount', 'sip-amount-range');
+    linkInputs('sip-return', 'sip-return-range');
+    linkInputs('sip-years', 'sip-years-range');
+    
+    function calculateSIP() {
+        const monthlyInvestment = parseFloat(document.getElementById('sip-amount').value);
+        const annualReturn = parseFloat(document.getElementById('sip-return').value);
+        const years = parseInt(document.getElementById('sip-years').value);
+        
+        const monthlyRate = annualReturn / 12 / 100;
+        const months = years * 12;
+        
+        // Formula: P * ((1 + r)^n - 1) / r * (1 + r)
+        const totalAmount = monthlyInvestment * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+        const investedAmount = monthlyInvestment * months;
+        const estimatedReturns = totalAmount - investedAmount;
+        const wealthRatio = totalAmount / investedAmount;
+        
+        // Update results
+        document.getElementById('sip-invested').textContent = '₹' + formatNumber(investedAmount);
+        document.getElementById('sip-returns').textContent = '₹' + formatNumber(estimatedReturns);
+        document.getElementById('sip-total').textContent = '₹' + formatNumber(totalAmount);
+        document.getElementById('sip-ratio').textContent = wealthRatio.toFixed(2) + 'x';
+        
+        // Update chart
+        updateChart('sip-chart-invested', 'sip-chart-returns', 'sip-chart-total', investedAmount, estimatedReturns, totalAmount);
+    }
+    
+    // Lumpsum Calculator functionality
+    document.getElementById('calculate-lumpsum').addEventListener('click', calculateLumpsum);
+    
+    // Link range inputs to number inputs for Lumpsum
+    linkInputs('lumpsum-amount', 'lumpsum-amount-range');
+    linkInputs('lumpsum-return', 'lumpsum-return-range');
+    linkInputs('lumpsum-years', 'lumpsum-years-range');
+    
+    function calculateLumpsum() {
+        const principal = parseFloat(document.getElementById('lumpsum-amount').value);
+        const annualReturn = parseFloat(document.getElementById('lumpsum-return').value);
+        const years = parseInt(document.getElementById('lumpsum-years').value);
+        
+        // Formula: P * (1 + r)^n
+        const totalAmount = principal * Math.pow(1 + (annualReturn / 100), years);
+        const estimatedReturns = totalAmount - principal;
+        const absoluteReturn = (estimatedReturns / principal) * 100;
+        
+        // Update results
+        document.getElementById('lumpsum-invested').textContent = '₹' + formatNumber(principal);
+        document.getElementById('lumpsum-returns').textContent = '₹' + formatNumber(estimatedReturns);
+        document.getElementById('lumpsum-total').textContent = '₹' + formatNumber(totalAmount);
+        document.getElementById('lumpsum-absolute').textContent = absoluteReturn.toFixed(2) + '%';
+        
+        // Update chart
+        updateChart('lumpsum-chart-invested', 'lumpsum-chart-returns', 'lumpsum-chart-total', principal, estimatedReturns, totalAmount);
+    }
+    
+    // Loan Calculator functionality
+    document.getElementById('calculate-loan').addEventListener('click', calculateLoan);
+    
+    // Link range inputs to number inputs for Loan
+    linkInputs('loan-amount', 'loan-amount-range');
+    linkInputs('loan-interest', 'loan-interest-range');
+    linkInputs('loan-tenure', 'loan-tenure-range');
+    
+    function calculateLoan() {
+        const principal = parseFloat(document.getElementById('loan-amount').value);
+        const interestRate = parseFloat(document.getElementById('loan-interest').value);
+        const tenureYears = parseInt(document.getElementById('loan-tenure').value);
+        
+        const monthlyRate = interestRate / 12 / 100;
+        const tenureMonths = tenureYears * 12;
+        
+        // EMI formula: P * r * (1+r)^n / ((1+r)^n - 1)
+        const emi = principal * monthlyRate * Math.pow(1 + monthlyRate, tenureMonths) / (Math.pow(1 + monthlyRate, tenureMonths) - 1);
+        
+        const totalAmount = emi * tenureMonths;
+        const totalInterest = totalAmount - principal;
+        const interestRatio = totalInterest / principal;
+        
+        // Update results
+        document.getElementById('loan-emi').textContent = '₹' + formatNumber(emi);
+        document.getElementById('loan-total-interest').textContent = '₹' + formatNumber(totalInterest);
+        document.getElementById('loan-total-amount').textContent = '₹' + formatNumber(totalAmount);
+        document.getElementById('loan-ratio').textContent = interestRatio.toFixed(2);
+        
+        // Update chart
+        const chartPrincipal = document.getElementById('loan-chart-principal');
+        const chartInterest = document.getElementById('loan-chart-interest');
+        const chartTotal = document.getElementById('loan-chart-total');
+        
+        const principalHeight = (principal / totalAmount) * 100;
+        const interestHeight = (totalInterest / totalAmount) * 100;
+        
+        chartPrincipal.style.height = principalHeight + '%';
+        chartInterest.style.height = interestHeight + '%';
+        chartTotal.style.height = '100%';
+    }
+    
+    // Helper functions
+    function linkInputs(inputId, rangeId) {
+        const input = document.getElementById(inputId);
+        const range = document.getElementById(rangeId);
+        
+        input.addEventListener('input', function() {
+            range.value = this.value;
+        });
+        
+        range.addEventListener('input', function() {
+            input.value = this.value;
+        });
+    }
+    
+    function formatNumber(num) {
+        return new Intl.NumberFormat('en-IN').format(Math.round(num));
+    }
+    
+    function updateChart(investedId, returnsId, totalId, invested, returns, total) {
+        const maxValue = total;
+        const investedHeight = (invested / maxValue) * 100;
+        const returnsHeight = (returns / maxValue) * 100;
+        
+        document.getElementById(investedId).style.height = investedHeight + '%';
+        document.getElementById(returnsId).style.height = returnsHeight + '%';
+        document.getElementById(totalId).style.height = '100%';
+    }
+    
+    // Initialize calculators
+    updateDisplay(); // Initialize regular calculator display
+    calculateSIP();
+    calculateLoan();
+</script>
